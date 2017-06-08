@@ -13,9 +13,12 @@ DECL_API = "https://public-api.nazk.gov.ua/v1/declaration/{person_id:s}"
 
 def add_guids_to_content(guids):
 	for g in guids:
+		print(g)
 		sleep(0.5)
 		decl_api = DECL_API.format(person_id = g)
 		decl = requests.get(decl_api).json()
+		if not os.path.exists(settings.JSON_FOLDER):
+			os.mkdir(settings.JSON_FOLDER)
 		filename = os.path.join(settings.JSON_FOLDER, g) + ".json"
 		with open(filename, "w") as f:
 			json.dump(decl, f)

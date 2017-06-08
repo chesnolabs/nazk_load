@@ -24,7 +24,7 @@ with open(SHORTLIST_FILE, "r") as sf:
 	names = sf.readlines()
 
 for n in names:
-	print(n)
+	print(n.strip())
 	guids = get_guids_by_name(n)
 	sleep(1)
 	refresh_content.add_guids_to_content(guids)
