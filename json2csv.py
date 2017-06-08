@@ -114,7 +114,8 @@ def get_step(sn, block, common_columns):
 				for r in rows:
 					csvwriter.writerow(r)
 	
-
+if not os.path.exists(settings.CSV_FOLDER):
+	os.mkdir(settings.CSV_FOLDER)
 
 for the_file in os.listdir(settings.CSV_FOLDER):
 	file_path = os.path.join(settings.CSV_FOLDER, the_file)
