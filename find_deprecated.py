@@ -27,9 +27,6 @@ def check_identity(d1, d2):
 	if headed_content[d1['id']]['declarationYear'] == headed_content[d2['id']]['declarationYear']:
 		for step in d1["data"]:
 			if not ("empty" in d1["data"][step]) and step != "step_0" and len(d1["data"][step]) > 0 and d1["data"][step] == d2["data"][step]:
-				#print(d1['id'], d2['id'])
-				#print(headed_content[d1['id']], headed_content[d2['id']])
-				#print(d1['data'][step])
 				return True
 	return False
 
@@ -54,18 +51,13 @@ def ask_types(c1, c2):
 		inp.send_keys(headed_content[c1]["fullname"])
 		button.click()
 		sleep(SLEEP_TIME)
-		els = browser.find_elements_by_css_selector(DECL_SELECTOR)
-		for e in els:
-			sub_e = e.find_elements_by_xpath("../a")
-			for se in sub_e:
-				print(se.find_element_by_xpath("/a").text)
 		pairs = get_pairs(browser.page_source)
 		docs_types.update(pairs)
 		with open(settings.DOCS_TYPE_FILE, 'w') as dtf:
 			json.dump(docs_types, dtf)
 		if "Виправл" in pairs[c1]:
 			return c2
-		else:
+		elif "Виправл" in pairs[c2]:
 			return c1
 	
 
