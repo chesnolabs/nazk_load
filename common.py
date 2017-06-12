@@ -53,7 +53,7 @@ def load_headed_content():
 def load_deprecated():
 	if not os.path.isfile(settings.DEPRECATED_FILE):
 		a = open(settings.DEPRECATED_FILE, "w")
-		json.dump({}, a)
+		json.dump([], a)
 		a.close()
 	with open(settings.DEPRECATED_FILE) as df:
 		deprecated = json.load(df)
