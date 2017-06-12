@@ -32,8 +32,7 @@ def check_identity(d1, d2):
 
 def ask_types(c1, c2):
 	global browser
-	with open(settings.DOCS_TYPE_FILE, 'r') as dtf:
-		docs_types = json.load(dtf)
+	docs_types = common.load_types()
 	if c1 in docs_types:
 		if "Виправлена" in docs_types[c1]:
 			return c2
